@@ -26,7 +26,7 @@ from openerp.addons.account.report.common_report_header import common_report_hea
 #from common_report_header import common_report_header
 from openerp import  models,  _, api
 from openerp.osv import fields, orm
-import account_move as ParserReport
+import account as ParserReport
 
 
 # class print_prima_nota_cassa(models.AbstractModel):
