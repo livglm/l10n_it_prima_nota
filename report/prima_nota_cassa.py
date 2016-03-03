@@ -1,33 +1,33 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+    # -*- coding: utf-8 -*-
+    ##############################################################################
+    #
+    #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+    #    Copyright (C) 2011-2013 Associazione OpenERP Italia
+    #    (<http://www.openerp-italia.org>).
+    #
+    #    This program is free software: you can redistribute it and/or modify
+    #    it under the terms of the GNU Affero General Public License as published by
+    #    the Free Software Foundation, either version 3 of the License, or
+    #    (at your option) any later version.
+    #
+    #    This program is distributed in the hope that it will be useful,
+    #    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    #    GNU General Public License for more details.
+    #
+    #    You should have received a copy of the GNU Affero General Public License
+    #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    #
+    ##############################################################################
 
-import time
-from openerp.report import report_sxw
-from openerp.addons.account.report.common_report_header import common_report_header
-#from common_report_header import common_report_header
-from openerp import _
+    import time
+    from openerp.report import report_sxw
+    from openerp.addons.account.report.common_report_header import common_report_header
+    #from common_report_header import common_report_header
+    from openerp import _
 
-#class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-class print_prima_nota_cassa(report_sxw.rml_parse):
+    #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
+    class print_prima_nota_cassa(report_sxw.rml_parse):
     _name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
@@ -83,7 +83,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
         })
         self.context = context
 
-      def __init__(self, cr, uid, name, context=None):
+    def __init__(self, cr, uid, name, context=None):
         if context is None:
             context = {}
         super(print_prima_nota_cassa, self).__init__(cr, uid, name, context=context)
@@ -321,13 +321,13 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
             return 'Journal & Partner'
         return 'Date'
 
-report_sxw.report_sxw('report.account.print.prima_nota_cassa',
+    report_sxw.report_sxw('report.account.print.prima_nota_cassa',
                       'account.account',
                       '/report/prima_nota_cassa.mako',
                       parser=print_prima_nota_cassa)
 
 
-'posted':
+    'posted':
             move_state = ['posted','']
         self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
                 FROM account_move_line l \
@@ -362,7 +362,7 @@ report_sxw.report_sxw('report.account.print.prima_nota_cassa',
         return 'Date'
 
 
-class ProductPricelistReportQweb(osv.AbstractModel):
+    class ProductPricelistReportQweb(osv.AbstractModel):
 
     # As we are inheriting a report that was previously a particular report we
     # have to keep it like that, i.e., we will keep _name the same than the
@@ -381,9 +381,9 @@ class ProductPricelistReportQweb(osv.AbstractModel):
     # so we can comment this attribute
     _wrapped_report_class = print_prima_nota_cassa
 
-# report_sxw.report_sxw('report.account.print.prima_nota_cassa',
-#                       'account.account',
-#                       '/report/prima_nota_cassa.mako',
-#                       parser=print_prima_nota_cassa)
+    # report_sxw.report_sxw('report.account.print.prima_nota_cassa',
+    #                       'account.account',
+    #                       '/report/prima_nota_cassa.mako',
+    #                       parser=print_prima_nota_cassa)
 
 
