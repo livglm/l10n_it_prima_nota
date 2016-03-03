@@ -218,7 +218,7 @@ class print_prima_nota(models.AbstractModel):
     def _sum_total_debit(self, account):
         move_state = ['draft','posted']
 
-        account_ids = self.get_children_accounts(main_account)
+        account_ids = self.get_children_accounts(account)
 
         if self.target_move == 'posted':
             move_state = ['posted','']
