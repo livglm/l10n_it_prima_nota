@@ -23,7 +23,7 @@
 
 from openerp.osv import fields, orm
 
-class account_report_prima_nota_cassa(orm.TransientModel):
+class account_report_prima_nota(orm.TransientModel):
     _inherit = "account.common.account.report"
     _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
@@ -50,8 +50,5 @@ class account_report_prima_nota_cassa(orm.TransientModel):
     _defaults = {
         'journal_ids': _get_all_journal,
     }
-
-
-account_report_prima_nota_cassa()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
