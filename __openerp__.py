@@ -26,7 +26,7 @@
     'author': "OpenERP Italian Community,Odoo Community Association (OCA)",
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
-    "depends" : ['account', 'report_webkit'],
+    "depends" : ['account', 'report'],
     "data" : [
         'report/prima_nota_cassa.xml',
         'reports.xml',
