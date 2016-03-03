@@ -27,14 +27,12 @@
     'website': 'http://www.openerp-italia.org',
     'license': 'AGPL-3',
     "depends" : ['account', 'report_webkit'],
-    "init_xml" : [
-        ],
-    "update_xml" : [
+    "data" : [
         'report/prima_nota_cassa.xml',
         'reports.xml',
         'wizard/wizard_print_prima_nota_cassa.xml',
         ],
-    "demo_xml" : [],
+    "demo" : [],
     "active": False,
     'installable': True
 }
