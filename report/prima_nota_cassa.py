@@ -92,10 +92,11 @@ class print_prima_nota_cassa(models.AbstractModel):
         return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
 
 
-    def __init__(self, cr, uid, name, context=None):
-        if context is None:
+    @api.model
+    def __init__(self):
+        if self._context is None:
             context = {}
-        super(print_prima_nota_cassa, self).__init__(cr, uid, name, context=context)
+        super(print_prima_nota_cassa, self).__init__()
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
