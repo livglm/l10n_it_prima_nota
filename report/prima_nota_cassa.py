@@ -24,7 +24,7 @@ import time
 from openerp.report import report_sxw
 from openerp.addons.account.report.common_report_header import common_report_header
 #from common_report_header import common_report_header
-from openerp import  models,  _
+from openerp import  models,  _, api
 from openerp.osv import fields, orm
 
 
