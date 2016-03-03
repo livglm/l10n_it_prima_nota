@@ -92,7 +92,7 @@ class print_prima_nota_cassa(models.AbstractModel):
         return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
 
 
-    @api.model
+    @api.multi
     def __init__(self):
         if self._context is None:
             context = {}
