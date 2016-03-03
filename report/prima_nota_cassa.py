@@ -30,7 +30,7 @@ from openerp.osv import fields, orm
 
 
 class print_prima_nota_cassa(models.AbstractModel):
-    _name = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+    _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
     _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
 
     @api.multi
