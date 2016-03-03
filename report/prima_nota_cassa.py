@@ -90,7 +90,7 @@ class print_prima_nota(models.AbstractModel):
         if (data['model'] == 'ir.ui.menu'):
             new_ids = [data['form']['chart_account_id']]
             objects = self.pool.get('account.account').browse(self.cr, self.uid, new_ids)
-        return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
+        return super(print_prima_nota, self).set_context(objects, data, new_ids, report_type=report_type)
 
 
     @api.multi
