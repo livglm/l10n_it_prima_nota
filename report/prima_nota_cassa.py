@@ -111,10 +111,6 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
             'get_target_move': self._get_target_move,
         })
         self.context = context
-          'get_end_date':self._get_end_date,
-            'get_target_move': self._get_target_move,
-        })
-        self.context = context
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
@@ -661,22 +657,22 @@ report_sxw.report_sxw('report.account.print.prima_nota_cassa',
 
 class ProductPricelistReportQweb(osv.AbstractModel):
 
-	# As we are inheriting a report that was previously a particular report we
-	# have to keep it like that, i.e., we will keep _name the same than the
-	# original
+    # As we are inheriting a report that was previously a particular report we
+    # have to keep it like that, i.e., we will keep _name the same than the
+    # original
 
-	# _name = `report.` + `report_name` (FQN)
-	# report_name="product.report_pricelist"
-	_name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
+    # _name = `report.` + `report_name` (FQN)
+    # report_name="product.report_pricelist"
+    _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
 
-	# this inheritance will allow to render this particular report
-	# here old report class is being reused
-	#_inherit = 'report.product.report_pricelist'
-	# new template will be used this because we want something more customized
-	_template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
-	# old wrapper class from original report will be used
-	# so we can comment this attribute
-	_wrapped_report_class = print_prima_nota_cassa
+    # this inheritance will allow to render this particular report
+    # here old report class is being reused
+    #_inherit = 'report.product.report_pricelist'
+    # new template will be used this because we want something more customized
+    _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+    # old wrapper class from original report will be used
+    # so we can comment this attribute
+    _wrapped_report_class = print_prima_nota_cassa
 
 # report_sxw.report_sxw('report.account.print.prima_nota_cassa',
 #                       'account.account',
