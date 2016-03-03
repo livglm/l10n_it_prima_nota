@@ -293,48 +293,8 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
             return 'Journal & Partner'
         return 'Date'
 
-    report_sxw.report_sxw('report.account.print.prima_nota_cassa',
-                      'account.account',
-                      '/report/prima_nota_cassa.mako',
-                      parser=print_prima_nota_cassa)
 
-
-    'posted':
-            move_state = ['posted','']
-        self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
-                FROM account_move_line l \
-                JOIN account_move am ON (am.id = l.move_id) \
-                WHERE (l.account_id = %s) \
-                AND (am.state IN %s) \
-                AND '+ self.query +' '
-                ,(account.id, tuple(move_state)))
-        sum_balance = self.cr.fetchone()[0] or 0.0
-        if self.init_balance:
-            self.cr.execute('SELECT (sum(debit) - sum(credit)) as tot_balance \
-                    FROM account_move_line l \
-                    JOIN account_move am ON (am.id = l.move_id) \
-                    WHERE (l.account_id = %s) \
-                    AND (am.state IN %s) \
-                    AND '+ self.init_query +' '
-                    ,(account.id, tuple(move_state)))
-            # Add initial balance to the result
-            sum_balance += self.cr.fetchone()[0] or 0.0
-        return sum_balance
-
-    def _get_account(self, data):
-        if data['model'] == 'account.account':
-            return self.pool.get('account.account').browse(self.cr, self.uid, data['form']['id']).company_id.name
-        return super(print_prima_nota_cassa ,self)._get_account(data)
-
-    def _get_sortby(self, data):
-        if self.sortby == 'sort_date':
-            return 'Date'
-        elif self.sortby == 'sort_journal_partner':
-            return 'Journal & Partner'
-        return 'Date'
-
-
-    class ProductPricelistReportQweb(osv.AbstractModel):
+class ProductPricelistReportQweb(osv.AbstractModel):
 
     # As we are inheriting a report that was previously a particular report we
     # have to keep it like that, i.e., we will keep _name the same than the
