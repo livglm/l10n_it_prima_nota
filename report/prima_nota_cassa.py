@@ -20,14 +20,14 @@
     #
     ##############################################################################
 
-    import time
-    from openerp.report import report_sxw
-    from openerp.addons.account.report.common_report_header import common_report_header
-    #from common_report_header import common_report_header
-    from openerp import _
+import time
+from openerp.report import report_sxw
+from openerp.addons.account.report.common_report_header import common_report_header
+#from common_report_header import common_report_header
+from openerp import _
 
     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-    class print_prima_nota_cassa(report_sxw.rml_parse):
+class print_prima_nota_cassa(report_sxw.rml_parse):
     _name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
@@ -54,34 +54,6 @@
             objects = self.pool.get('account.account').browse(self.cr, self.uid, new_ids)
         return super(print_prima_nota_cassa, self).set_context(objects, data, new_ids, report_type=report_type)
 
-    def __init__(self, cr, uid, name, context=None):
-        if context is None:
-            context = {}
-        super(print_prima_nota_cassa, self).__init__(cr, uid, name, context=context)
-        self.query = ""
-        self.tot_currency = 0.0
-        self.period_sql = ""
-        self.sold_accounts = {}
-        self.sortby = 'sort_date'
-        self.localcontext.update( {
-            'time': time,
-            'lines': self.lines,
-            'sum_debit_account': self._sum_debit_account,
-            'sum_credit_account': self._sum_credit_account,
-            'sum_balance_account': self._sum_balance_account,
-            'sum_currency_amount_account': self._sum_currency_amount_account,
-            'get_fiscalyear': self._get_fiscalyear,
-            'get_journal': self._get_journal,
-            'get_account': self._get_account,
-            'get_start_period': self.get_start_period,
-            'get_end_period': self.get_end_period,
-            'get_filter': self._get_filter,
-            'get_sortby': self._get_sortby,
-            'get_start_date':self._get_start_date,
-            'get_end_date':self._get_end_date,
-            'get_target_move': self._get_target_move,
-        })
-        self.context = context
 
     def __init__(self, cr, uid, name, context=None):
         if context is None:
