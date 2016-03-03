@@ -25,7 +25,7 @@ from openerp.osv import fields, orm
 
 class account_report_prima_nota_cassa(orm.TransientModel):
     _inherit = "account.common.account.report"
-    _name = 'account.report.prima_nota_cassa'
+    _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
 
 

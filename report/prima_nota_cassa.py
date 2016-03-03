@@ -26,7 +26,7 @@ from openerp.addons.account.report.common_report_header import common_report_hea
 #from common_report_header import common_report_header
 from openerp import  models,  _, api
 from openerp.osv import fields, orm
-
+import account_move as ParserReport
 
 
 # class print_prima_nota_cassa(models.AbstractModel):
@@ -65,7 +65,7 @@ from openerp.osv import fields, orm
 
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-class print_prima_nota_cassa(report_sxw.rml_parse):
+class print_prima_nota(ParserReport):
      #_name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
@@ -97,7 +97,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
     def __init__(self):
         if self._context is None:
             context = {}
-        super(print_prima_nota_cassa, self).__init__()
+        super(print_prima_nota, self).__init__()
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
@@ -341,16 +341,16 @@ class ProductPricelistReportQweb(orm.AbstractModel):
 #
 #     # _name = `report.` + `report_name` (FQN)
 #     # report_name="product.report_pricelist"
-    _name = 'report.l10n_it_prima_nota_cassa.prima_nota'
+    _name = 'report.l10n_it_prima_nota.prima_nota'
 #
 #     # this inheritance will allow to render this particular report
 #     # here old report class is being reused
 #     #_inherit = 'report.product.report_pricelist'
 #     # new template will be used this because we want something more customized
-    _template = 'l10n_it_prima_nota_cassa.prima_nota'
+    _template = 'l10n_it_prima_nota.prima_nota'
 #     # old wrapper class from original report will be used
 #     # so we can comment this attribute
-    _wrapped_report_class = print_prima_nota_cassa
+    _wrapped_report_class = print_prima_nota
 #
 #     # report_sxw.report_sxw('report.account.print.prima_nota_cassa',
 #     #                       'account.account',
