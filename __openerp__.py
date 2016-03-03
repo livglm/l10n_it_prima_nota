@@ -28,6 +28,7 @@
     'license': 'AGPL-3',
     "depends" : ['account', 'report_webkit'],
     "data" : [
+        'report/prima_nota_cassa.xml',
         'reports.xml',
         'wizard/wizard_print_prima_nota_cassa.xml',
         ],
