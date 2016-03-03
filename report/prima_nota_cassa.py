@@ -66,7 +66,7 @@ from openerp.osv import fields, orm
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 class print_prima_nota_cassa(report_sxw.rml_parse):
-     _name = 'report.account.prima_nota_cassa'
+     #_name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
         new_ids = ids
@@ -332,7 +332,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
             return 'Journal & Partner'
         return 'Date'
 
-#
+
 class ProductPricelistReportQweb(orm.AbstractModel):
 #
 #     # As we are inheriting a report that was previously a particular report we
@@ -341,16 +341,16 @@ class ProductPricelistReportQweb(orm.AbstractModel):
 #
 #     # _name = `report.` + `report_name` (FQN)
 #     # report_name="product.report_pricelist"
-     _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
+    _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
 #
 #     # this inheritance will allow to render this particular report
 #     # here old report class is being reused
 #     #_inherit = 'report.product.report_pricelist'
 #     # new template will be used this because we want something more customized
-     _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+    _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
 #     # old wrapper class from original report will be used
 #     # so we can comment this attribute
-     _wrapped_report_class = print_prima_nota_cassa
+    _wrapped_report_class = print_prima_nota_cassa
 #
 #     # report_sxw.report_sxw('report.account.print.prima_nota_cassa',
 #     #                       'account.account',
