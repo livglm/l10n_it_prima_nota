@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <report
+            auto="False"
+            id="prima_nota_cassa"
+            model="account.account"
+            name="l10n_it_prima_nota_cassa.prima_nota_cassa"
+            file="l10n_it_prima_nota_cassa.prima_nota_cassa"
+            string="Prima Nota Cassa"
+            report_type="qweb-pdf" />
+
+    </data>
+</openerp>
+
