@@ -65,7 +65,7 @@ from openerp.osv import fields, orm
 
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-class print_prima_nota(models.AbstractModel):
+class print_prima_nota(common_report_header):
      #_name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
