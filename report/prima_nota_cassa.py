@@ -26,8 +26,6 @@ from openerp.addons.account.report.common_report_header import common_report_hea
 #from common_report_header import common_report_header
 from openerp import  models,  _, api
 from openerp.osv import fields, orm
-from openerp.adaccount.report.general.ledger\
-	import account as ParserReport
 #import account as ParserReport
 
 
@@ -67,7 +65,7 @@ from openerp.adaccount.report.general.ledger\
 
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-class print_prima_nota(ParserReport):
+class print_prima_nota(models.AbstractModel):
      #_name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
