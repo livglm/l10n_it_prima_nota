@@ -25,6 +25,7 @@ from openerp.report import report_sxw
 from openerp.addons.account.report.common_report_header import common_report_header
 #from common_report_header import common_report_header
 from openerp import _
+from openerp.osv import fields, orm
 
     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 class print_prima_nota_cassa(report_sxw.rml_parse):
@@ -294,7 +295,7 @@ class print_prima_nota_cassa(report_sxw.rml_parse):
         return 'Date'
 
 
-class ProductPricelistReportQweb(osv.AbstractModel):
+class ProductPricelistReportQweb(orm.AbstractModel):
 
     # As we are inheriting a report that was previously a particular report we
     # have to keep it like that, i.e., we will keep _name the same than the
