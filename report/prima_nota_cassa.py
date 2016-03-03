@@ -341,13 +341,13 @@ class ProductPricelistReportQweb(orm.AbstractModel):
 #
 #     # _name = `report.` + `report_name` (FQN)
 #     # report_name="product.report_pricelist"
-    _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
+    _name = 'report.l10n_it_prima_nota_cassa.prima_nota'
 #
 #     # this inheritance will allow to render this particular report
 #     # here old report class is being reused
 #     #_inherit = 'report.product.report_pricelist'
 #     # new template will be used this because we want something more customized
-    _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+    _template = 'l10n_it_prima_nota_cassa.prima_nota'
 #     # old wrapper class from original report will be used
 #     # so we can comment this attribute
     _wrapped_report_class = print_prima_nota_cassa

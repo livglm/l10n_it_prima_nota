@@ -3,10 +3,10 @@
     <data>
 
         <report
-            id="prima_nota_cassa"
+            id="prima_nota"
             model="account.account"
-            name="l10n_it_prima_nota_cassa.prima_nota_cassa"
-            file="l10n_it_prima_nota_cassa.prima_nota_cassa"
+            name="l10n_it_prima_nota_cassa.prima_nota"
+            file="l10n_it_prima_nota_cassa.prima_nota"
             string="Prima Nota Cassa"
             report_type="qweb-pdf" />
 
