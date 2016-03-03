@@ -31,7 +31,7 @@
         </record>
 -->
         <template id="l10n_it_prima_nota_cassa.prima_nota_cassa"><!-- Multicompany -->
-<t t-if="o and 'company_id' in o">
+<<!--t t-if="o and 'company_id' in o">
     <t t-set="company" t-value="o.company_id"/></t>
             <t t-if="not o or not 'company_id' in o">
                 <t t-set="company" t-value="res_company"/></t>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-        </template>
+-->        </template>
 <!--
         <template id="minimal_layout" inherit_id="report.minimal_layout">
             <xpath expr="//head" position="inside">
