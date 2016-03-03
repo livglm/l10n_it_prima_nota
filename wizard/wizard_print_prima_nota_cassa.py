@@ -42,7 +42,7 @@ class account_report_prima_nota_cassa(orm.TransientModel):
         if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
             data['form'].update({'initial_balance': False})
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'account.report_journal', 'datas': data}
+        return { 'type': 'ir.actions.report.xml', 'report_name': 'l10n_it_prima_nota_cassa.prima_nota_cassa', 'datas': data}
 
     _columns = {
         'initial_balance': fields.boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
