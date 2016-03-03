@@ -39,23 +39,6 @@ class print_prima_nota_cassa(models.AbstractModel):
         report = report_obj._get_report_from_name(self._template)
 
         docargs = {
-            'time': time,
-            'lines': self.lines,
-            'sum_debit_account': self._sum_debit_account,
-            'sum_credit_account': self._sum_credit_account,
-            'sum_balance_account': self._sum_balance_account,
-            'sum_currency_amount_account': self._sum_currency_amount_account,
-            'get_fiscalyear': self._get_fiscalyear,
-            'get_journal': self._get_journal,
-            'get_account': self._get_account,
-            'get_start_period': self.get_start_period,
-            'get_end_period': self.get_end_period,
-            'get_filter': self._get_filter,
-            'get_sortby': self._get_sortby,
-            'get_start_date':self._get_start_date,
-            'get_end_date':self._get_end_date,
-            'get_target_move': self._get_target_move,
-            'currency_text': self.currency_text,
             'doc_ids': self._ids,
             'doc_model': report.model,
             'docs': self,
