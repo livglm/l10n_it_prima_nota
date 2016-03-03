@@ -29,44 +29,44 @@ from openerp.osv import fields, orm
 
 
 
-class print_prima_nota_cassa(models.AbstractModel):
-    _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
-    _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
-
-    @api.multi
-    def render_html(self, data=None):
-
-        report_obj = self.env['report']
-        report = report_obj._get_report_from_name(self._template)
-
-        docargs = {
-            'time': time,
-            'lines': self.lines,
-            'sum_debit_account': self._sum_debit_account,
-            'sum_credit_account': self._sum_credit_account,
-            'sum_balance_account': self._sum_balance_account,
-            'sum_currency_amount_account': self._sum_currency_amount_account,
-            'get_fiscalyear': self._get_fiscalyear,
-            'get_journal': self._get_journal,
-            'get_account': self._get_account,
-            'get_start_period': self.get_start_period,
-            'get_end_period': self.get_end_period,
-            'get_filter': self._get_filter,
-            'get_sortby': self._get_sortby,
-            'get_start_date':self._get_start_date,
-            'get_end_date':self._get_end_date,
-            'get_target_move': self._get_target_move,
-            'currency_text': self.currency_text,
-            'doc_ids': self._ids,
-            'doc_model': report.model,
-            'docs': self,
-        }
-        return report_obj.render(self._template, docargs)
+# class print_prima_nota_cassa(models.AbstractModel):
+#     _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
+#     _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+#
+#     @api.multi
+#     def render_html(self, data=None):
+#
+#         report_obj = self.env['report']
+#         report = report_obj._get_report_from_name(self._template)
+#
+#         docargs = {
+#             'time': time,
+#             'lines': self.lines,
+#             'sum_debit_account': self._sum_debit_account,
+#             'sum_credit_account': self._sum_credit_account,
+#             'sum_balance_account': self._sum_balance_account,
+#             'sum_currency_amount_account': self._sum_currency_amount_account,
+#             'get_fiscalyear': self._get_fiscalyear,
+#             'get_journal': self._get_journal,
+#             'get_account': self._get_account,
+#             'get_start_period': self.get_start_period,
+#             'get_end_period': self.get_end_period,
+#             'get_filter': self._get_filter,
+#             'get_sortby': self._get_sortby,
+#             'get_start_date':self._get_start_date,
+#             'get_end_date':self._get_end_date,
+#             'get_target_move': self._get_target_move,
+#             'currency_text': self.currency_text,
+#             'doc_ids': self._ids,
+#             'doc_model': report.model,
+#             'docs': self,
+#         }
+#         return report_obj.render(self._template, docargs)
 
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-# class print_prima_nota_cassa(report_sxw.rml_parse):
-#     _name = 'report.account.prima_nota_cassa'
+class print_prima_nota_cassa(report_sxw.rml_parse):
+     _name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
         new_ids = ids
@@ -103,25 +103,25 @@ class print_prima_nota_cassa(models.AbstractModel):
         self.period_sql = ""
         self.sold_accounts = {}
         self.sortby = 'sort_date'
-        # self.localcontext.update( {
-        #     'time': time,
-        #     'lines': self.lines,
-        #     'sum_debit_account': self._sum_debit_account,
-        #     'sum_credit_account': self._sum_credit_account,
-        #     'sum_balance_account': self._sum_balance_account,
-        #     'sum_currency_amount_account': self._sum_currency_amount_account,
-        #     'get_fiscalyear': self._get_fiscalyear,
-        #     'get_journal': self._get_journal,
-        #     'get_account': self._get_account,
-        #     'get_start_period': self.get_start_period,
-        #     'get_end_period': self.get_end_period,
-        #     'get_filter': self._get_filter,
-        #     'get_sortby': self._get_sortby,
-        #     'get_start_date':self._get_start_date,
-        #     'get_end_date':self._get_end_date,
-        #     'get_target_move': self._get_target_move,
-        # })
-        # self.context = context
+        self.localcontext.update( {
+             'time': time,
+             'lines': self.lines,
+             'sum_debit_account': self._sum_debit_account,
+             'sum_credit_account': self._sum_credit_account,
+             'sum_balance_account': self._sum_balance_account,
+             'sum_currency_amount_account': self._sum_currency_amount_account,
+             'get_fiscalyear': self._get_fiscalyear,
+             'get_journal': self._get_journal,
+             'get_account': self._get_account,
+             'get_start_period': self.get_start_period,
+             'get_end_period': self.get_end_period,
+             'get_filter': self._get_filter,
+             'get_sortby': self._get_sortby,
+             'get_start_date':self._get_start_date,
+             'get_end_date':self._get_end_date,
+             'get_target_move': self._get_target_move,
+         })
+        self.context = context
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
@@ -333,7 +333,7 @@ class print_prima_nota_cassa(models.AbstractModel):
         return 'Date'
 
 #
-# class ProductPricelistReportQweb(orm.AbstractModel):
+class ProductPricelistReportQweb(orm.AbstractModel):
 #
 #     # As we are inheriting a report that was previously a particular report we
 #     # have to keep it like that, i.e., we will keep _name the same than the
@@ -341,16 +341,16 @@ class print_prima_nota_cassa(models.AbstractModel):
 #
 #     # _name = `report.` + `report_name` (FQN)
 #     # report_name="product.report_pricelist"
-#     _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
+     _name = 'report.l10n_it_prima_nota_cassa.prima_nota_cassa'
 #
 #     # this inheritance will allow to render this particular report
 #     # here old report class is being reused
 #     #_inherit = 'report.product.report_pricelist'
 #     # new template will be used this because we want something more customized
-#     _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
+     _template = 'l10n_it_prima_nota_cassa.prima_nota_cassa'
 #     # old wrapper class from original report will be used
 #     # so we can comment this attribute
-#     _wrapped_report_class = print_prima_nota_cassa
+     _wrapped_report_class = print_prima_nota_cassa
 #
 #     # report_sxw.report_sxw('report.account.print.prima_nota_cassa',
 #     #                       'account.account',
