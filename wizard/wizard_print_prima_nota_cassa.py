@@ -56,7 +56,7 @@ class account_report_prima_nota(orm.TransientModel):
 
         datas = {'ids' : [],
                  'model':'account_report_prima_nota',
-                 'form':data['form'][0],
+                 'form':data['form'],
                  'time': time,
                  'lines': self.lines,
                  'sum_debit_account': self._sum_debit_account,
