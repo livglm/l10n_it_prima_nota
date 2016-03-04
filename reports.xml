@@ -8,7 +8,9 @@
             name="l10n_it_prima_nota.prima_nota"
             file="l10n_it_prima_nota.prima_nota"
             string="Prima Nota Cassa"
-            report_type="qweb-pdf" />
+            report_type="qweb-pdf"
+            menu = "False"
+        />
 
     </data>
 </openerp>
