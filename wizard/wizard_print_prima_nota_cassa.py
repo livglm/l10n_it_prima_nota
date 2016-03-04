@@ -122,7 +122,6 @@ class account_report_prima_nota(models.TransientModel):
                     l['amount_currency'] = abs(l['amount_currency']) * -1
             if l['amount_currency'] != None:
                 self.tot_currency = self.tot_currency + l['amount_currency']
-        print res
         return res
 
 
@@ -140,8 +139,7 @@ class account_report_prima_nota(models.TransientModel):
         # self.sortby = 'sort_date'
         #
         id = self.lines
-        print id
-        #data = self.pre_print_report()
+         #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
