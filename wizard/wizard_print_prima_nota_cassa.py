@@ -33,8 +33,9 @@ class account_report_prima_nota(models.TransientModel):
     def _get_all_journal(self, cr, uid, context=None):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
-    def _print_report(self, cr, uid, ids, data, context):
-        if context is None:
+    @api.multi
+    def _print_report(self,data=None):
+        if self._context is None:
             context = {}
 
         self.query = ""
@@ -44,7 +45,7 @@ class account_report_prima_nota(models.TransientModel):
         self.sortby = 'sort_date'
 
 
-        data = self.pre_print_report(cr, uid, ids, data, context=context)
+        data = self.pre_print_report(context=context)
 
         data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
