@@ -255,11 +255,30 @@ from openerp.report import report_sxw
 #         return 'Date'
 #
 #
+class ParticularReport(orm.AbstractModel):
+    _name = 'report.ln10_it_prima_nota.prima_nota'
+
+    @api.multi
+    def render_html(self, data=    None):
+        report_obj = self.env['report']
+        report = report_obj._get_report_from_name('module.report_name')
+        docargs = {
+            'doc_ids': self._ids,
+            'doc_model': report.model,
+            'docs': self,
+        }
+
+        return report_obj.render('module.report_name', docargs)
+
 
 class account_report_prima_nota(orm.TransientModel):
     _inherit = "account.common.account.report"
     _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
+
+
+
+
 
 
     def _get_all_journal(self, cr, uid, context=None):
