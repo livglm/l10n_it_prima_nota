@@ -37,7 +37,7 @@ class account_report_prima_nota(models.TransientModel):
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
         print main_account
-        account_ids = self.get_children_accounts(main_account)
+        account_ids = self.env['account.move.line'].get_children_accounts(main_account)
 
     @api.multi
     def _print_report(self,data=None):
@@ -50,8 +50,8 @@ class account_report_prima_nota(models.TransientModel):
         # self.sold_accounts = {}
         # self.sortby = 'sort_date'
         #
-        #id = self.lines
-        #print id
+        id = self.lines
+        print id
         #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
