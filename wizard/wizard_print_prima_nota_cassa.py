@@ -43,13 +43,13 @@ class account_report_prima_nota(models.TransientModel):
     def _print_report(self,data=None):
         if self._context is None:
             self._context = {}
-
-        self.query = ""
-        self.tot_currency = 0.0
-        self.period_sql = ""
-        self.sold_accounts = {}
-        self.sortby = 'sort_date'
-
+        #
+        # self.query = ""
+        # self.tot_currency = 0.0
+        # self.period_sql = ""
+        # self.sold_accounts = {}
+        # self.sortby = 'sort_date'
+        #
         #id = self.lines
         #print id
         #data = self.pre_print_report()
@@ -64,7 +64,7 @@ class account_report_prima_nota(models.TransientModel):
         #data.update({'lines': self.lines})
 
         datas = {'ids' : [],
-                 'model':'account.invoice.line',
+                 'model':'account.report.prima_nota',
                  'form': self.read()
         }
 
