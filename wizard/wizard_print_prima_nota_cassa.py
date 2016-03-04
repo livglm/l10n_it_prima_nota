@@ -58,90 +58,6 @@ class print_prima_nota(report_sxw.rml_parse):
 
 
 
-class account_report_prima_nota(orm.TransientModel):
-    _inherit = "account.common.account.report"
-    _name = 'account.report.prima_nota'
-    _description = "Print Prima Nota Cassa"
-
-
-    def _get_all_journal(self, cr, uid, context=None):
-        return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
-
-    def _print_report(self, cr, uid, ids, data, context):
-        if context is None:
-            context = {}
-
-        self.query = ""
-        self.tot_currency = 0.0
-        self.period_sql = ""
-        self.sold_accounts = {}
-        self.sortby = 'sort_date'
-
-
-        data = self.pre_print_report(cr, uid, ids, data, context=context)
-
-        data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
-        #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
-
-        if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
-            data['form'].update({'initial_balance': False})
-
-        #data.update({'time': time})
-        #data.update({'lines': self.lines})
-
-        datas = {'ids' : [],
-                 'model':'account.invoice.line',
-                 'form':data['form'],
-                 'context':context
-        }
-
-        print datas
-        #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'ln10_it_prima_nota.prima_nota', 'datas': data}
-
-
-
-    _columns = {
-        'initial_balance': fields.boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
-    }
-    _defaults = {
-        'journal_ids': _get_all_journal,
-    }
-
-
-    # @api.multi
-    # def __init__(self):
-    #      if self.context is None:
-    #          context = {}
-    #      super(account_report_prima_nota, self).__init__()
-    #      self.query = ""
-    #      self.tot_currency = 0.0
-    #      self.period_sql = ""
-    #      self.sold_accounts = {}
-    #      self.sortby = 'sort_date'
-    #      self.localcontext.update( {
-    #           'time': time,
-    #           'lines': self.lines,
-    #           'sum_debit_account': self._sum_debit_account,
-    #           'sum_credit_account': self._sum_credit_account,
-    #           'sum_balance_account': self._sum_balance_account,
-    #           'sum_currency_amount_account': self._sum_currency_amount_account,
-    #           'get_fiscalyear': self._get_fiscalyear,
-    #           'get_journal': self._get_journal,
-    #           'get_account': self._get_account,
-    #           'get_start_period': self.get_start_period,
-    #           'get_end_period': self.get_end_period,
-    #           'get_filter': self._get_filter,
-    #           'get_sortby': self._get_sortby,
-    #           'get_start_date':self._get_start_date,
-    #           'get_end_date':self._get_end_date,
-    #           'get_target_move': self._get_target_move,
-    #       })
-    #      self.context = context
-
-
-
-
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
@@ -352,6 +268,90 @@ class account_report_prima_nota(orm.TransientModel):
         elif self.sortby == 'sort_journal_partner':
             return 'Journal & Partner'
         return 'Date'
+
+
+
+class account_report_prima_nota(orm.TransientModel):
+    _inherit = "account.common.account.report"
+    _name = 'account.report.prima_nota'
+    _description = "Print Prima Nota Cassa"
+
+
+    def _get_all_journal(self, cr, uid, context=None):
+        return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
+
+    def _print_report(self, cr, uid, ids, data, context):
+        if context is None:
+            context = {}
+
+        self.query = ""
+        self.tot_currency = 0.0
+        self.period_sql = ""
+        self.sold_accounts = {}
+        self.sortby = 'sort_date'
+
+
+        data = self.pre_print_report(cr, uid, ids, data, context=context)
+
+        data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
+        #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
+
+        if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
+            data['form'].update({'initial_balance': False})
+
+        #data.update({'time': time})
+        #data.update({'lines': self.lines})
+
+        datas = {'ids' : [],
+                 'model':'account.invoice.line',
+                 'form':data['form'],
+                 'context':context
+        }
+
+        print datas
+        #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
+        return { 'type': 'ir.actions.report.xml', 'report_name': 'ln10_it_prima_nota.prima_nota', 'datas': data}
+
+
+
+    _columns = {
+        'initial_balance': fields.boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
+    }
+    _defaults = {
+        'journal_ids': _get_all_journal,
+    }
+
+
+    # @api.multi
+    # def __init__(self):
+    #      if self.context is None:
+    #          context = {}
+    #      super(account_report_prima_nota, self).__init__()
+    #      self.query = ""
+    #      self.tot_currency = 0.0
+    #      self.period_sql = ""
+    #      self.sold_accounts = {}
+    #      self.sortby = 'sort_date'
+    #      self.localcontext.update( {
+    #           'time': time,
+    #           'lines': self.lines,
+    #           'sum_debit_account': self._sum_debit_account,
+    #           'sum_credit_account': self._sum_credit_account,
+    #           'sum_balance_account': self._sum_balance_account,
+    #           'sum_currency_amount_account': self._sum_currency_amount_account,
+    #           'get_fiscalyear': self._get_fiscalyear,
+    #           'get_journal': self._get_journal,
+    #           'get_account': self._get_account,
+    #           'get_start_period': self.get_start_period,
+    #           'get_end_period': self.get_end_period,
+    #           'get_filter': self._get_filter,
+    #           'get_sortby': self._get_sortby,
+    #           'get_start_date':self._get_start_date,
+    #           'get_end_date':self._get_end_date,
+    #           'get_target_move': self._get_target_move,
+    #       })
+    #      self.context = context
+
 
 
 
