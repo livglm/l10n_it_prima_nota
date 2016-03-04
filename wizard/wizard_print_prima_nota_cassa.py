@@ -32,9 +32,19 @@ class account_report_prima_nota(orm.TransientModel):
     def _get_all_journal(self, cr, uid, context=None):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
-    def _print_report(self, cr, uid, ids, data, context=None):
+    def _print_report(self, cr, uid, ids, data, context):
         if context is None:
             context = {}
+        self.localcontext.update({'time': time,
+                                 'lines': self.lines,
+                                 'sum_debit_account': self._sum_debit_account,
+                                 'sum_credit_account': self._sum_credit_account,
+                                 'sum_balance_account': self._sum_balance_account,
+                                 'sum_currency_amount_account': self._sum_currency_amount_account,
+                                 'get_fiscalyear': self._get_fiscalyear,
+                                 'get_account': self._get_account
+                                  })
+        self.context = context
 
         self.query = ""
         self.tot_currency = 0.0
@@ -57,14 +67,7 @@ class account_report_prima_nota(orm.TransientModel):
         datas = {'ids' : [],
                  'model':'account_report_prima_nota',
                  'form':data['form'],
-                 'time': time,
-                 'lines': self.lines,
-                 'sum_debit_account': self._sum_debit_account,
-                 'sum_credit_account': self._sum_credit_account,
-                 'sum_balance_account': self._sum_balance_account,
-                 'sum_currency_amount_account': self._sum_currency_amount_account,
-                 'get_fiscalyear': self._get_fiscalyear,
-                 'get_account': self._get_account,
+                 'context':context
         }
 
         print datas
