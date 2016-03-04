@@ -138,7 +138,7 @@ class account_report_prima_nota(models.TransientModel):
         # self.sold_accounts = {}
         # self.sortby = 'sort_date'
         #
-        id = self.lines(self)
+        id = self.lines(self.env['account.move.line'])
          #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
