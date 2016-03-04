@@ -44,7 +44,7 @@ class account_report_prima_nota(orm.TransientModel):
             data['form'].update({'initial_balance': False})
 
         data.update({'time': time})
-        data.update({'lines': self.lines})
+        #data.update({'lines': self.lines})
 
         print data
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
