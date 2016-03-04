@@ -95,7 +95,6 @@ class print_prima_nota(report_sxw.rml_parse):
 
     @api.multi
     def __init__(self, cr, uid, name, context):
-        print "a"
         if self._context is None:
             context = {}
         super(print_prima_nota, self).__init__(self, cr, uid, name, context)
@@ -123,7 +122,6 @@ class print_prima_nota(report_sxw.rml_parse):
              'get_target_move': self._get_target_move,
          })
         self.context = context
-        print context
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
@@ -158,6 +156,7 @@ class print_prima_nota(report_sxw.rml_parse):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
+        print main_account
         account_ids = self.get_children_accounts(main_account)
 
         move_state = ['draft','posted']
