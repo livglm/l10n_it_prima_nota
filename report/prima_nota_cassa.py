@@ -94,10 +94,10 @@ class print_prima_nota(report_sxw.rml_parse):
 
 
     @api.multi
-    def __init__(self):
+    def __init__(self, cr, uid, name, context):
         if self._context is None:
             context = {}
-        super(print_prima_nota, self).__init__()
+        super(print_prima_nota, self).__init__(self, cr, uid, name, context)
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
