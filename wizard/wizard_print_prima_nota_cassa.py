@@ -36,6 +36,7 @@ class account_report_prima_nota(orm.TransientModel):
         if context is None:
             context = {}
         data = self.pre_print_report(cr, uid, ids, data, context=context)
+        print data
         data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
 
