@@ -4,7 +4,7 @@
 
         <report
             id="prima_nota"
-            model="account.account"
+            model="account.move.line"
             name="l10n_it_prima_nota_cassa.prima_nota"
             file="l10n_it_prima_nota_cassa.prima_nota"
             string="Prima Nota Cassa"

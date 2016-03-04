@@ -31,6 +31,9 @@
         </record>
 -->
         <template id="prima_nota">
+            <t t-call="report.html_container">
+
+            </t>
             <!-- Multicompany -->
 <!--
             <<t t-if="o and 'company_id' in o">
