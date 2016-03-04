@@ -22,7 +22,7 @@
 ##############################################################################
 import time
 from openerp.osv import fields, orm
-
+from openerp import api,_
 class account_report_prima_nota(orm.TransientModel):
     _inherit = "account.common.account.report"
     _name = 'account.report.prima_nota'
@@ -60,7 +60,7 @@ class account_report_prima_nota(orm.TransientModel):
     }
 
 
-
+    @api.multi
     def __init__(self, cr, uid, name, context):
         if self._context is None:
             context = {}
