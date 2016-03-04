@@ -35,6 +35,32 @@ class account_report_prima_nota(orm.TransientModel):
     def _print_report(self, cr, uid, ids, data, context=None):
         if context is None:
             context = {}
+
+        self.query = ""
+        self.tot_currency = 0.0
+        self.period_sql = ""
+        self.sold_accounts = {}
+        self.sortby = 'sort_date'
+        self.localcontext.update( {
+              'time': time,
+              'lines': self.lines,
+              'sum_debit_account': self._sum_debit_account,
+              'sum_credit_account': self._sum_credit_account,
+              'sum_balance_account': self._sum_balance_account,
+              'sum_currency_amount_account': self._sum_currency_amount_account,
+              'get_fiscalyear': self._get_fiscalyear,
+              'get_journal': self._get_journal,
+              'get_account': self._get_account,
+              'get_start_period': self.get_start_period,
+              'get_end_period': self.get_end_period,
+              'get_filter': self._get_filter,
+              'get_sortby': self._get_sortby,
+              'get_start_date':self._get_start_date,
+              'get_end_date':self._get_end_date,
+              'get_target_move': self._get_target_move,
+        })
+
+
         data = self.pre_print_report(cr, uid, ids, data, context=context)
 
         data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
@@ -60,19 +86,35 @@ class account_report_prima_nota(orm.TransientModel):
     }
 
 
-    @api.multi
-    def __init__(self):
-         if self.context is None:
-             context = {}
-         super(account_report_prima_nota, self).__init__()
-         self.query = ""
-         self.tot_currency = 0.0
-         self.period_sql = ""
-         self.sold_accounts = {}
-         self.sortby = 'sort_date'
-         self.localcontext.update( {
-          })
-         self.context = context
+    # @api.multi
+    # def __init__(self):
+    #      if self.context is None:
+    #          context = {}
+    #      super(account_report_prima_nota, self).__init__()
+    #      self.query = ""
+    #      self.tot_currency = 0.0
+    #      self.period_sql = ""
+    #      self.sold_accounts = {}
+    #      self.sortby = 'sort_date'
+    #      self.localcontext.update( {
+    #           'time': time,
+    #           'lines': self.lines,
+    #           'sum_debit_account': self._sum_debit_account,
+    #           'sum_credit_account': self._sum_credit_account,
+    #           'sum_balance_account': self._sum_balance_account,
+    #           'sum_currency_amount_account': self._sum_currency_amount_account,
+    #           'get_fiscalyear': self._get_fiscalyear,
+    #           'get_journal': self._get_journal,
+    #           'get_account': self._get_account,
+    #           'get_start_period': self.get_start_period,
+    #           'get_end_period': self.get_end_period,
+    #           'get_filter': self._get_filter,
+    #           'get_sortby': self._get_sortby,
+    #           'get_start_date':self._get_start_date,
+    #           'get_end_date':self._get_end_date,
+    #           'get_target_move': self._get_target_move,
+    #       })
+    #      self.context = context
 
 
 
