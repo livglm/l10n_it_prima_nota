@@ -97,7 +97,7 @@ class account_report_prima_nota(orm.TransientModel):
 
         print datas
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'l10n_it_prima_nota.prima_nota', 'datas': data}
+        return { 'type': 'ir.actions.report.xml', 'report_name': 'account.report_centraljournal', 'datas': data}
 
 
 
