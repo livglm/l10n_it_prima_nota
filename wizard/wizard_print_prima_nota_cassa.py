@@ -64,7 +64,7 @@ class account_report_prima_nota(orm.TransientModel):
     def __init__(self):
         if self.context is None:
             context = {}
-        #super(account_report_prima_nota, self).__init__()
+        super(account_report_prima_nota, self).__init__()
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
