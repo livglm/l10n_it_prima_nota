@@ -42,15 +42,15 @@ class account_report_prima_nota(models.TransientModel):
         currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
 
-        cash_bank_journals = journal_obj.search(self.cr, self.uid, [ ('type','in',('bank','cash')) ] )
+        cash_bank_journals = journal_obj.search(self._cr, self._uid, [ ('type','in',('bank','cash')) ] )
 
-        cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
-            [journal_obj.browse(self.cr, self.uid, j).default_debit_account_id.id for j in cash_bank_journals]
+        cash_bank_accounts = [journal_obj.browse(self._cr, self._uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
+            [journal_obj.browse(self._cr, self._uid, j).default_debit_account_id.id for j in cash_bank_journals]
 
-        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id) \
+        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self._cr, self._uid, 235) \
             if acc in cash_bank_accounts]
 
-        currency = account.currency_id and account.currency_id or account.company_id.currency_id
+        #currency = account.currency_id and account.currency_id or account.company_id.currency_id
         return ids_acc
 
     def lines(self):
