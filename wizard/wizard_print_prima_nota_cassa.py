@@ -35,7 +35,7 @@ class account_report_prima_nota(orm.TransientModel):
     def _print_report(self, cr, uid, ids, data, context):
         if context is None:
             context = {}
-        self.context.update({'time': time,
+        context.update({'time': time,
                                  'lines': self.lines,
                                  'sum_debit_account': self._sum_debit_account,
                                  'sum_credit_account': self._sum_credit_account,
