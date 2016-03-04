@@ -60,7 +60,7 @@ class account_report_prima_nota(orm.TransientModel):
     }
 
 
-
+    @api.multi
     def __init__(self):
         if self.context is None:
             context = {}
