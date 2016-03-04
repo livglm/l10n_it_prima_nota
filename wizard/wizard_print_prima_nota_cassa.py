@@ -26,15 +26,15 @@ from openerp import api,_, models,fields
 
 
 class account_report_prima_nota(models.TransientModel):
-    #_inherit = "account.common.account.report"
-    _inherit = "account.report.account_general_ledger"
+    _inherit = "account.common.account.report"
+    #_inherit = "account.report.account_general_ledger"
     _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
 
     def _get_all_journal(self, cr, uid, context=None):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
-    def get_children_accounts(self, account):
+    def _get_children_accounts(self, account):
         res = []
         currency_obj = self.pool.get('res.currency')
         ids_acc = self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id)
@@ -64,7 +64,7 @@ class account_report_prima_nota(models.TransientModel):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-        account_ids = self.get_children_accounts(main_account)
+        account_ids = self._get_children_accounts(main_account)
 
         move_state = ['draft','posted']
         if self.target_move == 'posted':
