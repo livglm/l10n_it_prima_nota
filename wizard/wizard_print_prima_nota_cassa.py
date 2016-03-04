@@ -295,7 +295,7 @@ class account_report_prima_nota(orm.TransientModel):
     def _get_account(self, data):
         if data['model'] == 'account.account':
             return self.pool.get('account.account').browse(self.cr, self.uid, data['form']['id']).company_id.name
-        return super(print_prima_nota ,self)._get_account(data)
+        return super(account_report_prima_nota ,self)._get_account(data)
 
     def _get_sortby(self, data):
         if self.sortby == 'sort_date':
