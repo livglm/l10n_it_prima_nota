@@ -37,6 +37,7 @@ class account_report_prima_nota(models.TransientModel):
     def _get_children_accounts(self, account):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
+        print ids_acc
 
         currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
@@ -50,7 +51,6 @@ class account_report_prima_nota(models.TransientModel):
             if acc in cash_bank_accounts]
 
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
-        print ids_acc
         return ids_acc
 
     def lines(self, main_account):
