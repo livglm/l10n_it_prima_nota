@@ -288,7 +288,7 @@ class account_report_prima_nota(orm.TransientModel):
         #data.update({'lines': self.lines})
 
         datas = {'ids' : [],
-                 'model':'account.invoice.line',
+                 'model':'account.move.line',
                  'form':data['form'],
                  'context':context
         }
