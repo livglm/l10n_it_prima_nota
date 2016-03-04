@@ -26,7 +26,8 @@ from openerp import api,_, models,fields
 
 
 class account_report_prima_nota(models.TransientModel):
-    _inherit = "account.common.account.report"
+    #_inherit = "account.common.account.report"
+    _inherit = "account.move.line"
     _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
 
@@ -35,7 +36,7 @@ class account_report_prima_nota(models.TransientModel):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-        print main_account
+
         account_ids = self.get_children_accounts(main_account)
 
     @api.multi
@@ -49,7 +50,7 @@ class account_report_prima_nota(models.TransientModel):
         self.sold_accounts = {}
         self.sortby = 'sort_date'
 
-        id = self.lines('account.move.line')
+        id = self.lines
         print id
         #data = self.pre_print_report()
 
