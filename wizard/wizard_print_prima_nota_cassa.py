@@ -35,34 +35,23 @@ class account_report_prima_nota(models.TransientModel):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
     def _get_children_accounts(self, account):
-        res = []
-        currency_obj = self.pool.get('res.currency')
-        ids_acc = self.pool.get('account.account')._get_children_and_consol(self._cr, self._uid, account.id)
-        currency = account.currency_id and account.currency_id or account.company_id.currency_id
-        for child_account in self.pool.get('account.account').browse(self._cr, self._uid, ids_acc, context=self._context):
-            sql = """
-                SELECT count(id)
-                FROM account_move_line AS l
-                WHERE %s AND l.account_id = %%s
-            """ % (self.query)
-            self._cr.execute(sql, (child_account.id,))
-            num_entry = self.cr.fetchone()[0] or 0
-            sold_account = self._sum_balance_account(child_account)
-            self.sold_accounts[child_account.id] = sold_account
-            if self.display_account == 'movement':
-                if child_account.type != 'view' and num_entry <> 0:
-                    res.append(child_account)
-            elif self.display_account == 'not_zero':
-                if child_account.type != 'view' and num_entry <> 0:
-                    if not currency_obj.is_zero(self.cr, self.uid, currency, sold_account):
-                        res.append(child_account)
-            else:
-                res.append(child_account)
+        """ Return all the accounts that are children of the chosen main one
+        and are set as default for the selected cash and bank accounts"""
 
-        print "popopo2", res
-        if not res:
-            return [account]
-        return res
+        currency_obj = self.pool.get('res.currency')
+        journal_obj = self.pool.get('account.journal')
+
+        cash_bank_journals = journal_obj.search(self.cr, self.uid, [ ('type','in',('bank','cash')) ] )
+
+        cash_bank_accounts = [journal_obj.browse(self.cr, self.uid, j).default_credit_account_id.id for j in cash_bank_journals] + \
+            [journal_obj.browse(self.cr, self.uid, j).default_debit_account_id.id for j in cash_bank_journals]
+
+        ids_acc = [acc for acc in self.pool.get('account.account')._get_children_and_consol(self.cr, self.uid, account.id) \
+            if acc in cash_bank_accounts]
+
+        currency = account.currency_id and account.currency_id or account.company_id.currency_id
+
+        return ids_acc
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
@@ -138,7 +127,7 @@ class account_report_prima_nota(models.TransientModel):
         self.sold_accounts = {}
         self.sortby = 'sort_date'
         #
-        id = self.lines(self.env['account.move.line'])
+        id = self.lines
          #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
