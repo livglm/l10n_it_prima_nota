@@ -36,7 +36,7 @@ class account_report_prima_nota(models.TransientModel):
     @api.multi
     def _print_report(self,data=None):
         if self._context is None:
-            context = {}
+            self._context = {}
 
         self.query = ""
         self.tot_currency = 0.0
@@ -45,9 +45,9 @@ class account_report_prima_nota(models.TransientModel):
         self.sortby = 'sort_date'
 
 
-        data = self.pre_print_report(context=context)
+        data = self.pre_print_report(context=self._context)
 
-        data['form'].update(self.read(cr, uid, ids, ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
+        data['form'].update(self.read( ['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
 
         if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
