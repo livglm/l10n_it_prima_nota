@@ -41,7 +41,7 @@ class account_report_prima_nota(orm.TransientModel):
         self.period_sql = ""
         self.sold_accounts = {}
         self.sortby = 'sort_date'
-        self.localcontext.update( {
+        self.context.update( {
               'time': time,
               'lines': self.lines,
               'sum_debit_account': self._sum_debit_account,
