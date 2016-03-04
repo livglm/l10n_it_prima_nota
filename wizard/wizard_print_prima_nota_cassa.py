@@ -109,7 +109,7 @@ class account_report_prima_nota(models.TransientModel):
         # self.sold_accounts = {}
         # self.sortby = 'sort_date'
         #
-        id = self.lines.id
+        id = self.lines
         print id
         #data = self.pre_print_report()
 
