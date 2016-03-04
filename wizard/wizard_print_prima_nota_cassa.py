@@ -39,13 +39,13 @@ class account_report_prima_nota(models.TransientModel):
         currency_obj = self.pool.get('res.currency')
         ids_acc = self.pool.get('account.account')._get_children_and_consol(self._cr, self._uid, account.id)
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
-        for child_account in self.pool.get('account.account').browse(self.cr, self.uid, ids_acc, context=self.context):
+        for child_account in self.pool.get('account.account').browse(self._cr, self._uid, ids_acc, context=self._context):
             sql = """
                 SELECT count(id)
                 FROM account_move_line AS l
                 WHERE %s AND l.account_id = %%s
             """ % (self.query)
-            self.cr.execute(sql, (child_account.id,))
+            self._cr.execute(sql, (child_account.id,))
             num_entry = self.cr.fetchone()[0] or 0
             sold_account = self._sum_balance_account(child_account)
             self.sold_accounts[child_account.id] = sold_account
