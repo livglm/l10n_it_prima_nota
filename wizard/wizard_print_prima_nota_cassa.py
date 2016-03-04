@@ -65,7 +65,6 @@ class account_report_prima_nota(orm.TransientModel):
                  'sum_currency_amount_account': self._sum_currency_amount_account,
                  'get_fiscalyear': self._get_fiscalyear,
                  'get_account': self._get_account,
-                 'get_start_period': self.get_start_period,
         }
 
         print datas
