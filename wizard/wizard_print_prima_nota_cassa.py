@@ -41,24 +41,6 @@ class account_report_prima_nota(orm.TransientModel):
         self.period_sql = ""
         self.sold_accounts = {}
         self.sortby = 'sort_date'
-        context.update( {
-              'time': time,
-              'lines': self.lines,
-              'sum_debit_account': self._sum_debit_account,
-              'sum_credit_account': self._sum_credit_account,
-              'sum_balance_account': self._sum_balance_account,
-              'sum_currency_amount_account': self._sum_currency_amount_account,
-              'get_fiscalyear': self._get_fiscalyear,
-              #'get_journal': self._get_journal,
-              'get_account': self._get_account,
-              #'get_start_period': self.get_start_period,
-              #'get_end_period': self.get_end_period,
-              #'get_filter': self._get_filter,
-              #'get_sortby': self._get_sortby,
-              #'get_start_date':self._get_start_date,
-              #'get_end_date':self._get_end_date,
-              #'get_target_move': self._get_target_move,
-        })
 
 
         data = self.pre_print_report(cr, uid, ids, data, context=context)
@@ -72,9 +54,33 @@ class account_report_prima_nota(orm.TransientModel):
         #data.update({'time': time})
         #data.update({'lines': self.lines})
 
-        print data
+        datas = {'ids' : [],
+                 'model':'account_report_prima_nota',
+                 'form':data['form'][0],
+                 'time': time,
+                 'lines': self.lines,
+                 'sum_debit_account': self._sum_debit_account,
+                 'sum_credit_account': self._sum_credit_account,
+                 'sum_balance_account': self._sum_balance_account,
+                 'sum_currency_amount_account': self._sum_currency_amount_account,
+                 'get_fiscalyear': self._get_fiscalyear,
+                 'get_journal': self._get_journal,
+                 'get_account': self._get_account,
+                 'get_start_period': self.get_start_period,
+                 'get_end_period': self.get_end_period,
+                 'get_filter': self._get_filter,
+                 'get_sortby': self._get_sortby,
+                 'get_start_date':self._get_start_date,
+                 'get_end_date':self._get_end_date,
+                 'get_target_move': self._get_target_move,
+
+
+
+        }
+
+        print datas
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
-        return { 'type': 'ir.actions.report.xml', 'report_name': 'l10n_it_prima_nota.prima_nota', 'datas': data}
+        return { 'type': 'ir.actions.report.xml', 'report_name': 'l10n_it_prima_nota.prima_nota', 'datas': datas}
 
 
 
