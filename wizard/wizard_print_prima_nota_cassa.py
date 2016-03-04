@@ -50,7 +50,7 @@ class account_report_prima_nota(models.TransientModel):
             if acc in cash_bank_accounts]
 
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
-
+        print ids_acc
         return ids_acc
 
     def lines(self, main_account):
@@ -128,7 +128,7 @@ class account_report_prima_nota(models.TransientModel):
         self.sortby = 'sort_date'
         #
         id = self.lines
-        print id
+
          #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
