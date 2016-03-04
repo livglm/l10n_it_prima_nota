@@ -316,11 +316,7 @@ class account_report_prima_nota(orm.TransientModel):
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'ln10_it_prima_nota.prima_nota', 'datas': datas}
 
-        #return self.pool.get('account_report_prima_nota').get_action(cr, uid, [], 'ln10_it_prima_nota.prima_nota', data=data)
-
-        return self.pool['report'].get_action(
-            cr, uid, [], 'ln10_it_prima_nota.prima_nota', data=datas,
-            context=context)
+        return self.pool.get('account_report_prima_nota').get_action(cr, uid, [], 'ln10_it_prima_nota.prima_nota', data=data)
 
 
     _columns = {
