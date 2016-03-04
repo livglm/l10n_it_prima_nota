@@ -43,8 +43,8 @@ class account_report_prima_nota(orm.TransientModel):
         if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
             data['form'].update({'initial_balance': False})
 
-        data['time'].update({'time': time})
-        data['lines'].update({'lines': self.lines})
+        data.update({'time': time})
+        data.update({'lines': self.lines})
 
         print data
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
