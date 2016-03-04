@@ -64,7 +64,7 @@ class account_report_prima_nota(models.TransientModel):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-        account_ids = self._get_children_accounts(1)
+        account_ids = self._get_children_accounts(self.account)
 
         move_state = ['draft','posted']
         if self.target_move == 'posted':
@@ -150,7 +150,7 @@ class account_report_prima_nota(models.TransientModel):
         #data.update({'time': time})
         #data.update({'lines': self.lines})
 
-        datas = {'ids' : [id],
+        datas = {'ids' : [],
                  'model':'account.move.line',
                  'form': self.read()
         }
