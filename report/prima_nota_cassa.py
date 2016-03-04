@@ -95,6 +95,7 @@ class print_prima_nota(report_sxw.rml_parse):
 
     @api.multi
     def __init__(self, cr, uid, name, context):
+        print "a"
         if self._context is None:
             context = {}
         super(print_prima_nota, self).__init__(self, cr, uid, name, context)
