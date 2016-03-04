@@ -122,6 +122,7 @@ class print_prima_nota(report_sxw.rml_parse):
              'get_target_move': self._get_target_move,
          })
         self.context = context
+        print context
 
     def _sum_currency_amount_account(self, account):
         self.cr.execute('SELECT sum(l.amount_currency) AS tot_currency \
