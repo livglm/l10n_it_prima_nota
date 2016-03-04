@@ -34,10 +34,10 @@ class account_report_prima_nota(models.TransientModel):
     def _get_all_journal(self, cr, uid, context=None):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
-    def _get_children_accounts(self, account):
+    def _get_children_accounts(self):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
-        print ids_acc
+        print self
 
         currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
@@ -53,9 +53,9 @@ class account_report_prima_nota(models.TransientModel):
         currency = account.currency_id and account.currency_id or account.company_id.currency_id
         return ids_acc
 
-    def lines(self, main_account):
+    def lines(self):
         """ Return all the account_move_line of account with their account code counterparts """
-        account_ids = self._get_children_accounts(main_account)
+        account_ids = self._get_children_accounts()
 
         move_state = ['draft','posted']
         if self.target_move == 'posted':
