@@ -66,7 +66,7 @@ class account_report_prima_nota(models.TransientModel):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-        account_ids = self._get_children_accounts(self.account)
+        account_ids = self._get_children_accounts(main_account)
 
         move_state = ['draft','posted']
         if self.target_move == 'posted':
@@ -138,7 +138,7 @@ class account_report_prima_nota(models.TransientModel):
         # self.sold_accounts = {}
         # self.sortby = 'sort_date'
         #
-        id = self.lines
+        id = self.lines(1)
          #data = self.pre_print_report()
 
         #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
@@ -155,7 +155,6 @@ class account_report_prima_nota(models.TransientModel):
                  'form': self.read()
         }
 
-        print datas
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
         return { 'type': 'ir.actions.report.xml','report_name': 'ln10_it_prima_nota.prima_nota', 'datas': datas}
 
