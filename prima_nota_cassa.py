@@ -139,7 +139,7 @@ class print_prima_nota(report_sxw.rml_parse):
     def get_children_accounts(self, account):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
-
+        print account, "aa"
         currency_obj = self.pool.get('res.currency')
         journal_obj = self.pool.get('account.journal')
 
