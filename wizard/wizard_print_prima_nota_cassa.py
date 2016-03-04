@@ -49,7 +49,7 @@ class account_report_prima_nota(orm.TransientModel):
               'sum_balance_account': self._sum_balance_account,
               'sum_currency_amount_account': self._sum_currency_amount_account,
               'get_fiscalyear': self._get_fiscalyear,
-              'get_journal': self._get_journal,
+              'get_journal': self._get_all_journal,
               'get_account': self._get_account,
               'get_start_period': self.get_start_period,
               'get_end_period': self.get_end_period,
