@@ -36,7 +36,7 @@ class account_report_prima_nota(models.TransientModel):
 
     def lines(self, main_account):
         """ Return all the account_move_line of account with their account code counterparts """
-
+        print main_account
         account_ids = self.get_children_accounts(main_account)
 
     @api.multi
