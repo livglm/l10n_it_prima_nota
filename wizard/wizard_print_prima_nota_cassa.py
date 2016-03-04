@@ -57,8 +57,7 @@ class account_report_prima_nota(models.TransientModel):
 
         datas = {'ids' : [],
                  'model':'account.report.prima_nota',
-                 'form':data,
-                 'context':context
+                 'form': self.read()
         }
 
         print datas
