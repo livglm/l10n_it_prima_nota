@@ -150,7 +150,7 @@ class account_report_prima_nota(models.TransientModel):
         #data.update({'time': time})
         #data.update({'lines': self.lines})
 
-        datas = {'ids' : [],
+        datas = {'ids' : [19],
                  'model':'account.move.line',
                  'form': self.read()
         }
