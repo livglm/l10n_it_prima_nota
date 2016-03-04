@@ -63,7 +63,7 @@ class account_report_prima_nota(models.TransientModel):
         #data.update({'time': time})
         #data.update({'lines': self.lines})
 
-        datas = {'ids' : [],
+        datas = {'ids' : [id],
                  'model':'account.move.line',
                  'form': self.read()
         }
@@ -72,7 +72,7 @@ class account_report_prima_nota(models.TransientModel):
         #return { 'type': 'ir.actions.report.xml', 'report_name': 'account.print.prima_nota_cassa', 'datas': data}
         #return { 'type': 'ir.actions.report.xml','report_name': 'ln10_it_prima_nota.prima_nota', 'datas': datas}
 
-        #return self.pool.get('account_report_prima_nota').get_action(cr, uid, [], 'ln10_it_prima_nota.prima_nota', data=data)
+        return self.pool.get('account_report_prima_nota').get_action(cr, uid, [], 'ln10_it_prima_nota.prima_nota', data=data)
 
 
     initial_balance = fields.Boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance')
