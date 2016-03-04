@@ -26,8 +26,8 @@ from openerp import api,_, models,fields
 
 
 class account_report_prima_nota(models.TransientModel):
-    #_inherit = "account.common.account.report"
-    _inherit = "account.move.line"
+    _inherit = "account.common.account.report"
+    #_inherit = "account.move.line"
     _name = 'account.report.prima_nota'
     _description = "Print Prima Nota Cassa"
 
