@@ -60,8 +60,8 @@ class account_report_prima_nota(orm.TransientModel):
     }
 
 
-    @api.multi
-    def __init__(self, cr, uid, name, context):
+    #@api.multi
+    def __init__(self, cr, uid, ids, name, context):
         if self._context is None:
             context = {}
         super(account_report_prima_nota, self).__init__(self, cr, uid, name, context)
