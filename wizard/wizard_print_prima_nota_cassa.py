@@ -90,7 +90,7 @@ class account_report_prima_nota(orm.TransientModel):
         #data.update({'lines': self.lines})
 
         datas = {'ids' : [],
-                 'model':'account_report_prima_nota',
+                 'model':'account.invoice.line',
                  'form':data['form'],
                  'context':context
         }
