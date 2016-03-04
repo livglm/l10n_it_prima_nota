@@ -58,6 +58,8 @@ class account_report_prima_nota(models.TransientModel):
                         res.append(child_account)
             else:
                 res.append(child_account)
+
+        print res
         if not res:
             return [account]
         return res
