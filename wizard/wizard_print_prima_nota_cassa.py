@@ -111,8 +111,8 @@ class account_report_prima_nota(models.TransientModel):
                 AND l.account_id in %%s
             ORDER by %s
         """ %(self.query, tuple(move_state), sql_sort)
-        self.cr.execute(sql, (tuple(account_ids),))
-        res = self.cr.dictfetchall()
+        self._cr.execute(sql, (tuple(account_ids),))
+        res = self._cr.dictfetchall()
         for l in res:
             l['move'] = l['move_name'] != '/' and l['move_name'] or ('*'+str(l['mmove_id']))
             l['partner'] = l['partner_name'] or ''
