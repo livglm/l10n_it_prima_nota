@@ -132,11 +132,11 @@ class account_report_prima_nota(models.TransientModel):
         if self._context is None:
             self._context = {}
         #
-        # self.query = ""
-        # self.tot_currency = 0.0
-        # self.period_sql = ""
-        # self.sold_accounts = {}
-        # self.sortby = 'sort_date'
+        self.query = ""
+        self.tot_currency = 0.0
+        self.period_sql = ""
+        self.sold_accounts = {}
+        self.sortby = 'sort_date'
         #
         id = self.lines(self.env['account.move.line'])
          #data = self.pre_print_report()
