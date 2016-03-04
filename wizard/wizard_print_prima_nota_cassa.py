@@ -45,9 +45,9 @@ class account_report_prima_nota(models.TransientModel):
         self.sortby = 'sort_date'
 
 
-        data = self.pre_print_report()
+        #data = self.pre_print_report()
 
-        data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
+        #data['form'].update(self.read(['landscape',  'initial_balance', 'amount_currency', 'sortby'])[0])
         #data['form'].update(self.read(cr, uid, ids, [ 'initial_balance'])[0])
 
         if not data['form']['fiscalyear_id']:# GTK client problem onchange does not consider in save record
