@@ -34,7 +34,7 @@ class account_report_prima_nota(models.TransientModel):
     def _get_all_journal(self, cr, uid, context=None):
         return self.pool.get('account.journal').search(cr, uid , [('type','in',['cash','bank'])] )
 
-    def get_children_accounts(self, account):
+    def _get_children_accounts(self, account):
         """ Return all the accounts that are children of the chosen main one
         and are set as default for the selected cash and bank accounts"""
         print account, "aa"
