@@ -54,6 +54,13 @@ class account_report_prima_nota(models.TransientModel):
         return ids_acc
 
     def lines(self):
+        self.query = ""
+        self.tot_currency = 0.0
+        self.period_sql = ""
+        self.sold_accounts = {}
+        self.sortby = 'sort_date'
+
+
         """ Return all the account_move_line of account with their account code counterparts """
         account_ids = self._get_children_accounts()
 
@@ -124,11 +131,6 @@ class account_report_prima_nota(models.TransientModel):
         if self._context is None:
             self._context = {}
         #
-        self.query = ""
-        self.tot_currency = 0.0
-        self.period_sql = ""
-        self.sold_accounts = {}
-        self.sortby = 'sort_date'
         #
         id = self.lines()
 
