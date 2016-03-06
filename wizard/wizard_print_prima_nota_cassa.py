@@ -53,7 +53,7 @@ class account_report_prima_nota(models.TransientModel):
 
         return ids_acc
 
-    def lines(self):
+    def lines(self,main_account):
         self.query = ""
         self.tot_currency = 0.0
         self.period_sql = ""
@@ -62,7 +62,7 @@ class account_report_prima_nota(models.TransientModel):
 
 
         """ Return all the account_move_line of account with their account code counterparts """
-        account_ids = self._get_children_accounts()
+        account_ids = self._get_children_accounts(main_account)
 
         move_state = ['draft','posted']
         if self.target_move == 'posted':
