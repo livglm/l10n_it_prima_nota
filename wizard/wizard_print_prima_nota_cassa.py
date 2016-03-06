@@ -110,18 +110,18 @@ class account_report_prima_nota(models.TransientModel):
 
         print sql
 
-        self._cr.execute(sql, (tuple(account_ids),))
-        res = self._cr.dictfetchall()
-        for l in res:
-            l['move'] = l['move_name'] != '/' and l['move_name'] or ('*'+str(l['mmove_id']))
-            l['partner'] = l['partner_name'] or ''
-            # Modification of amount Currency
-            if l['credit'] > 0:
-                if l['amount_currency'] != None:
-                    l['amount_currency'] = abs(l['amount_currency']) * -1
-            if l['amount_currency'] != None:
-                self.tot_currency = self.tot_currency + l['amount_currency']
-        return res
+        # self._cr.execute(sql, (tuple(account_ids),))
+        # res = self._cr.dictfetchall()
+        # for l in res:
+        #     l['move'] = l['move_name'] != '/' and l['move_name'] or ('*'+str(l['mmove_id']))
+        #     l['partner'] = l['partner_name'] or ''
+        #     # Modification of amount Currency
+        #     if l['credit'] > 0:
+        #         if l['amount_currency'] != None:
+        #             l['amount_currency'] = abs(l['amount_currency']) * -1
+        #     if l['amount_currency'] != None:
+        #         self.tot_currency = self.tot_currency + l['amount_currency']
+        # return res
 
 
 
