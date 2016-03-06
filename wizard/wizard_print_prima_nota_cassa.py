@@ -108,7 +108,7 @@ class account_report_prima_nota(models.TransientModel):
             ORDER by %s
         """ %(self.query, tuple(move_state), sql_sort)
 
-        print sql
+        print sql, (account_ids)
 
         # self._cr.execute(sql, (tuple(account_ids),))
         # res = self._cr.dictfetchall()
