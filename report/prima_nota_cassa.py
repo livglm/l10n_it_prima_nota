@@ -33,7 +33,7 @@ class prima_nota_cassa_parser(orm.AbstractModel):
     _name = 'report.prima_nota_cassa'
     _inherit = 'report.abstract_report'
     _template = 'prima_nota_cassa'
-    _wrapped_report_class = print_prima_nota
+    _wrapped_report_class = 'print_prima_nota'
 
     def render_html(self, cr, uid, ids, data=None, context=None):
         if context is None:
