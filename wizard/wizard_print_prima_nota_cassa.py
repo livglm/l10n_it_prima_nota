@@ -143,7 +143,13 @@ class account_report_prima_nota(models.TransientModel):
         'journal_ids': _get_all_journal,
     }
 
-    initial_balance = fields.Boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance')
+    _columns = {
+        'initial_balance': fields.boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance'),
+    }
+    _defaults = {
+        'journal_ids': _get_all_journal,
+    }
+    #initial_balance = fields.Boolean('Include initial balances', help='It adds initial balance row on report which display previous sum amount of debit/credit/balance')
 
     #
     #  _defaults = {
