@@ -54,7 +54,7 @@ class prima_nota_cassa_parser(orm.AbstractModel):
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
 class print_prima_nota(report_sxw.rml_parse,common_report_header):
-    _name = 'report.account.prima_nota_cassa'
+    #_name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
         new_ids = ids
