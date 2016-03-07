@@ -30,7 +30,7 @@
     "data" : [
         #'report/prima_nota_cassa.xml',
         'reports.xml',
-        'wizard/wizard_print_prima_nota_cassa.xml',
+        #'wizard/wizard_print_prima_nota_cassa.xml',
         ],
     "demo" : [],
     "active": False,
