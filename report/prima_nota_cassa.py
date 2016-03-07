@@ -23,7 +23,7 @@
 import time
 from openerp.report import report_sxw
 #from openerp.addons.account.report.common_report_header import common_report_header
-#from common_report_header import common_report_header
+from common_report_header import common_report_header
 from openerp import  models,  _, api
 from openerp.osv import fields, orm
 #import account as ParserReport
@@ -53,8 +53,8 @@ class prima_nota_cassa_parser(orm.AbstractModel):
 
 
 #     #class print_prima_nota_cassa(report_sxw.rml_parse, common_report_header):
-class print_prima_nota(report_sxw.rml_parse):
-     #_name = 'report.account.prima_nota_cassa'
+class print_prima_nota(report_sxw.rml_parse,common_report_header):
+    _name = 'report.account.prima_nota_cassa'
 
     def set_context(self, objects, data, ids, report_type=None):
         new_ids = ids
